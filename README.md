@@ -34,7 +34,7 @@ Go to your Xcode project's "General" settings. Drag `Blondie.framework` to the *
 
 ### Step 3 - Initialize Blondie
 
-~~First, you'll need to get your Blondie app ID and iOS API key. To find these, just select the 'Blondie for iOS' option in your app settings.~~
+First, you'll need to get your Blondie Flow ID and an API key. To find these, just add an SDK trigger to your Blondie Flow.
 
 Then initialize Blondie SDK by importing Library and adding the following to your application delegate:
 
@@ -66,14 +66,14 @@ You can log events in Blondie that record what users do in your app and when the
   @"": @1392036272,
   @"stripe_invoice": @"inv_3434343434",
   @"customer": @{
-    @"phone": @"2654321",
+    @"phone": @"+3712654321",
     @"email": @"demo@example.com"
   }
 }];
 ```
 
 **Swift:**
-```
+```swift
 Blondie.logEvent(
   withName: "Short Form Submitted", 
   metaData: [
