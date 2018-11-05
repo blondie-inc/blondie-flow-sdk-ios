@@ -43,7 +43,7 @@ Then initialize Blondie SDK by importing Library and adding the following to you
 @import Blondie;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Blondie setApiKey:@"<Your iOS API Key>" forAppId:@"<Your App ID>"];
+    [Blondie setApiKey:@"<Your API Key>" forFlowId:@"<Your Flow ID>"];
 }
 ```
 
@@ -52,7 +52,7 @@ Then initialize Blondie SDK by importing Library and adding the following to you
 import Blondie 
   
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-     Blondie.setApiKey("<Your iOS API Key>", forAppId: "<Your App ID>")
+     Blondie.setApiKey("<Your API Key>", forFlowId: "<Your Flow ID>")
 }
 ```
 
@@ -62,9 +62,8 @@ You can log events in Blondie that record what users do in your app and when the
 
 **Objective-C:**
 ```objective-c
-[Blondie logEventWithName:@"Short Form Submitted" metaData: @{
-  @"": @1392036272,
-  @"stripe_invoice": @"inv_3434343434",
+[Blondie triggerEventWithName:@"Short Form Submitted" metaData: @{
+  @"amount": @1234,
   @"customer": @{
     @"phone": @"+3712654321",
     @"email": @"demo@example.com"
@@ -74,14 +73,13 @@ You can log events in Blondie that record what users do in your app and when the
 
 **Swift:**
 ```swift
-Blondie.logEvent(
+Blondie.triggerEvent(
   withName: "Short Form Submitted", 
   metaData: [
-    "order_date": 1392036272,
-    "stripe_invoice":"inv_3434343434",
-    "order_number": [
-      "value":"3434-3434",
-      "url":"https://example.org/orders/3434-3434"
+    "amount": 1234,
+    "customer": [
+      "phone": "+3712654321",
+      "email": "demo@example.com"
     ]
   ]
 )
