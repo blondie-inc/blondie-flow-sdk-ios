@@ -66,14 +66,14 @@ You can select the Blondie Flow environment to use. It is very handy when you ne
 
 By default we select `production` environment, but you can always change it by calling one of:
 
-**Objective-C**
+**Objective-C:**
 ```objective-c
 [Blondie useDevelopmentEnvironment];
 [Blondie useTestEnvironment];
 [Blondie useProductionEnvironment];
 ```
 
-**Swift**
+**Swift:**
 ```swift
 Blondie.useDevelopmentEnvironment()
 Blondie.useTestEnvironment()
@@ -84,12 +84,12 @@ Blondie.useProductionEnvironment()
 
 In order to integrate Blondie SDK with a custom Blondie Flow instance you can set the base url by calling:
 
-**Objective-C**
+**Objective-C:**
 ```objective-c
 [Blondie setBaseUrl:@"https://custom.flow.url"];
 ```
 
-**Swift**
+**Swift:**
 ```swift
 Blondie.setBaseUrl("https://custom.flow.url")
 ```
@@ -100,12 +100,12 @@ By default Blondie SDK works both in both online and offline mode. In order to w
 
 You can disable that behaviour by calling:
 
-**Objective-C**
+**Objective-C:**
 ```objective-c
 [Blondie disableOfflineMode];
 ```
 
-**Swift**
+**Swift:**
 ```swift
 Blondie.disableOfflineMode()
 ```
@@ -116,12 +116,12 @@ By default Blondie SDK performs automatic retries if an error occurs during a re
 
 You can disable that behaviour by calling:
 
-**Objective-C**
+**Objective-C:**
 ```objective-c
 [Blondie disableAutoRetries];
 ```
 
-**Swift**
+**Swift:**
 ```swift
 Blondie.disableAutoRetries()
 ```
