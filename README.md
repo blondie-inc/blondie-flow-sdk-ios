@@ -38,7 +38,7 @@ Go to your Xcode project's "General" settings. Drag `Blondie.framework` to the *
 
 Then initialize Blondie SDK by importing Library and adding the following to your application delegate:
 
-Objective-C:
+**Objective-C:**
 ```objective-c
 @import Blondie;
 
@@ -47,7 +47,7 @@ Objective-C:
 }
 ```
 
-Swift:
+**Swift:**
 ```swift
 import Blondie 
   
@@ -60,7 +60,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 You can log events in Blondie that record what users do in your app and when they do it. For example, you could record the data a user submitted in your mobile app, and when they submitted it.
 
-Objective-C:
+**Objective-C:**
 ```objective-c
 [Blondie logEventWithName:@"Short Form Submitted" metaData: @{
   @"": @1392036272,
@@ -72,7 +72,7 @@ Objective-C:
 }];
 ```
 
-Swift:
+**Swift:**
 ```
 Blondie.logEvent(
   withName: "Short Form Submitted", 
