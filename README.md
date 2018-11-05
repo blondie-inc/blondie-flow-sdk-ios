@@ -22,7 +22,7 @@ end
 
 #### Option 2. Carthage
 
-1. Add github "blondie-inc/blondie-sdk-ios" to your Cartfile.
+1. Add `github "blondie-inc/blondie-sdk-ios"` to your Cartfile.
 2. Run `carthage update`.
 3. Go to your Xcode project's "General" settings. Drag `Blondie.framework` from Carthage/Build/iOS to the "Embedded Binaries" section.
 
