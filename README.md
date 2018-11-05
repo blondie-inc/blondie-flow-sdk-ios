@@ -94,6 +94,38 @@ In order to integrate Blondie SDK with a custom Blondie Flow instance you can se
 Blondie.setBaseUrl("https://custom.flow.url")
 ```
 
+### Disable offline mode
+
+By default Blondie SDK works both in both online and offline mode. In order to work without an internet connection, Blondie SDK keeps a queue of events to sync when the connection becomes available again.
+
+You can disable that behaviour by calling:
+
+**Objective-C**
+```objective-c
+[Blondie disableOfflineMode];
+```
+
+**Swift**
+```swift
+Blondie.disableOfflineMode()
+```
+
+### Disable auto retries
+
+By default Blondie SDK performs automatic retries if an error occurs during a request to the Blondie Flow, so that you don't need to worry about missing an event.
+
+You can disable that behaviour by calling:
+
+**Objective-C**
+```objective-c
+[Blondie disableAutoRetries];
+```
+
+**Swift**
+```swift
+Blondie.disableAutoRetries()
+```
+
 ## Tracking events
 
 You can log events in Blondie that record what users do in your app and when they do it. For example, you could record the data a user submitted in your mobile app, and when they submitted it.
