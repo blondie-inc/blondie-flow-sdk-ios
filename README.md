@@ -56,7 +56,45 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-## Tracking Events
+## Configuration
+
+Here’s how to configure Blondie for iOS:
+
+### Select an environment
+
+You can select the Blondie Flow environment to use. It is very handy when you need to test a particular feature before rolling out to production.
+
+By default we select `production` environment, but you can always change it by calling one of:
+
+**Objective-C**
+```objective-c
+[Blondie useDevelopmentEnvironment];
+[Blondie useTestEnvironment];
+[Blondie useProductionEnvironment];
+```
+
+**Swift**
+```swift
+Blondie.useDevelopmentEnvironment()
+Blondie.useTestEnvironment()
+Blondie.useProductionEnvironment()
+```
+
+### Use a custom Blondie Flow instance
+
+In order to integrate Blondie SDK with a custom Blondie Flow instance you can set the base url by calling:
+
+**Objective-C**
+```objective-c
+[Blondie setBaseUrl:@"https://custom.flow.url"];
+```
+
+**Swift**
+```swift
+Blondie.setBaseUrl("https://custom.flow.url")
+```
+
+## Tracking events
 
 You can log events in Blondie that record what users do in your app and when they do it. For example, you could record the data a user submitted in your mobile app, and when they submitted it.
 
