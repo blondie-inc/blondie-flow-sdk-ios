@@ -9,6 +9,8 @@
 #import <Blondie.h>
 
 #import "BlondieReachability.h"
+#import "BlondieEvent.h"
+#import "BlondieStorage.h"
 
 typedef NS_ENUM(NSUInteger, BlondieEnvironmentType) {
 	kDevelopment,
@@ -25,6 +27,8 @@ typedef NS_ENUM(NSUInteger, BlondieEnvironmentType) {
 @property (readwrite, nonatomic) BOOL useOfflineMode;
 @property (readwrite, nonatomic) BOOL useAutoRetries;
 
+@property (strong, readwrite, nonatomic) BlondieStorage *storage;
+	
 @property (nonatomic) BlondieReachability *internetReachability;
 	
 @end
@@ -45,6 +49,8 @@ typedef NS_ENUM(NSUInteger, BlondieEnvironmentType) {
 		self.environment = kProduction;
 		self.useOfflineMode = YES;
 		self.useAutoRetries = YES;
+		
+		self.storage = [[BlondieStorage alloc] init];
 		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
 		

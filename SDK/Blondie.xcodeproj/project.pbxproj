@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		94091B872191DB1800629D32 /* BlondieReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 94091B852191DB1800629D32 /* BlondieReachability.h */; };
 		94091B882191DB1800629D32 /* BlondieReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 94091B862191DB1800629D32 /* BlondieReachability.m */; };
+		94091B8B2191E1A500629D32 /* BlondieEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 94091B892191E1A500629D32 /* BlondieEvent.h */; };
+		94091B8C2191E1A500629D32 /* BlondieEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 94091B8A2191E1A500629D32 /* BlondieEvent.m */; };
+		94091B8F2191E1E900629D32 /* BlondieStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 94091B8D2191E1E900629D32 /* BlondieStorage.h */; };
+		94091B902191E1E900629D32 /* BlondieStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 94091B8E2191E1E900629D32 /* BlondieStorage.m */; };
 		94BAA39F21919E790080A06E /* Blondie.h in Headers */ = {isa = PBXBuildFile; fileRef = 94BAA39D21919E790080A06E /* Blondie.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94BAA3A62191A0740080A06E /* Blondie.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BAA3A52191A0740080A06E /* Blondie.m */; };
 /* End PBXBuildFile section */
@@ -16,6 +20,10 @@
 /* Begin PBXFileReference section */
 		94091B852191DB1800629D32 /* BlondieReachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlondieReachability.h; sourceTree = "<group>"; };
 		94091B862191DB1800629D32 /* BlondieReachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlondieReachability.m; sourceTree = "<group>"; };
+		94091B892191E1A500629D32 /* BlondieEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlondieEvent.h; sourceTree = "<group>"; };
+		94091B8A2191E1A500629D32 /* BlondieEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlondieEvent.m; sourceTree = "<group>"; };
+		94091B8D2191E1E900629D32 /* BlondieStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlondieStorage.h; sourceTree = "<group>"; };
+		94091B8E2191E1E900629D32 /* BlondieStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlondieStorage.m; sourceTree = "<group>"; };
 		94BAA39A21919E790080A06E /* Blondie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Blondie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94BAA39D21919E790080A06E /* Blondie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Blondie.h; sourceTree = "<group>"; };
 		94BAA39E21919E790080A06E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +65,10 @@
 				94BAA3A52191A0740080A06E /* Blondie.m */,
 				94091B852191DB1800629D32 /* BlondieReachability.h */,
 				94091B862191DB1800629D32 /* BlondieReachability.m */,
+				94091B892191E1A500629D32 /* BlondieEvent.h */,
+				94091B8A2191E1A500629D32 /* BlondieEvent.m */,
+				94091B8D2191E1E900629D32 /* BlondieStorage.h */,
+				94091B8E2191E1E900629D32 /* BlondieStorage.m */,
 			);
 			path = Blondie;
 			sourceTree = "<group>";
@@ -68,6 +80,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94091B8F2191E1E900629D32 /* BlondieStorage.h in Headers */,
+				94091B8B2191E1A500629D32 /* BlondieEvent.h in Headers */,
 				94BAA39F21919E790080A06E /* Blondie.h in Headers */,
 				94091B872191DB1800629D32 /* BlondieReachability.h in Headers */,
 			);
@@ -158,6 +172,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				94091B882191DB1800629D32 /* BlondieReachability.m in Sources */,
+				94091B902191E1E900629D32 /* BlondieStorage.m in Sources */,
+				94091B8C2191E1A500629D32 /* BlondieEvent.m in Sources */,
 				94BAA3A62191A0740080A06E /* Blondie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
