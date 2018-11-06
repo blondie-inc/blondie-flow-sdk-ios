@@ -12,7 +12,23 @@
 		94BAA3BA2191A61F0080A06E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94BAA3B82191A61F0080A06E /* Main.storyboard */; };
 		94BAA3BC2191A6210080A06E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94BAA3BB2191A6210080A06E /* Assets.xcassets */; };
 		94BAA3BF2191A6220080A06E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94BAA3BD2191A6220080A06E /* LaunchScreen.storyboard */; };
+		94BAA3C72191A7A30080A06E /* Blondie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BAA3C62191A7A30080A06E /* Blondie.framework */; };
+		94BAA3C82191A7A30080A06E /* Blondie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 94BAA3C62191A7A30080A06E /* Blondie.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		94BAA3C92191A7A30080A06E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				94BAA3C82191A7A30080A06E /* Blondie.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		94BAA3B12191A61F0080A06E /* Blondie Example Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blondie Example Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +38,8 @@
 		94BAA3BB2191A6210080A06E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94BAA3BE2191A6220080A06E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94BAA3C02191A6220080A06E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94BAA3C62191A7A30080A06E /* Blondie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Blondie.framework; path = ../../Framework/Blondie.framework; sourceTree = "<group>"; };
+		94BAA3CA2191A8390080A06E /* Blondie-Example-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Blondie-Example-Swift-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94BAA3C72191A7A30080A06E /* Blondie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +57,7 @@
 		94BAA3A82191A61F0080A06E = {
 			isa = PBXGroup;
 			children = (
+				94BAA3C62191A7A30080A06E /* Blondie.framework */,
 				94BAA3B32191A61F0080A06E /* Blondie Example Swift */,
 				94BAA3B22191A61F0080A06E /* Products */,
 			);
@@ -60,6 +80,7 @@
 				94BAA3BB2191A6210080A06E /* Assets.xcassets */,
 				94BAA3BD2191A6220080A06E /* LaunchScreen.storyboard */,
 				94BAA3C02191A6220080A06E /* Info.plist */,
+				94BAA3CA2191A8390080A06E /* Blondie-Example-Swift-Bridging-Header.h */,
 			);
 			path = "Blondie Example Swift";
 			sourceTree = "<group>";
@@ -74,6 +95,7 @@
 				94BAA3AD2191A61F0080A06E /* Sources */,
 				94BAA3AE2191A61F0080A06E /* Frameworks */,
 				94BAA3AF2191A61F0080A06E /* Resources */,
+				94BAA3C92191A7A30080A06E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -283,6 +305,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../Framework\"";
 				INFOPLIST_FILE = "Blondie Example Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -290,6 +313,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sdk.blondie-example-swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Blondie Example Swift/Blondie-Example-Swift-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -300,6 +325,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../Framework\"";
 				INFOPLIST_FILE = "Blondie Example Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -307,6 +333,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sdk.blondie-example-swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Blondie Example Swift/Blondie-Example-Swift-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
