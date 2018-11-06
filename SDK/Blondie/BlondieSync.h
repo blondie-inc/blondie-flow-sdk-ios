@@ -21,8 +21,8 @@ typedef NS_ENUM(NSUInteger, BlondieEnvironmentType) {
 @interface BlondieSync : NSObject
 
 - (void)setApiKey:(NSString *)apiKey forFlowId:(NSString *)flowId;
-- (void)setEnvironment:(BlondieEnvironmentType)environment;
-- (void)setBaseUrl:(NSString *)baseUrl;
+- (void)setupEnvironment:(BlondieEnvironmentType)environment;
+- (void)useCustomUrl:(NSString *)url;
 - (void)disableOfflineMode;
 - (void)disableAutoRetries;
 - (void)addEvent:(BlondieEvent *)event;

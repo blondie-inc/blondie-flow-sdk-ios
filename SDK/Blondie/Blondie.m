@@ -6,7 +6,7 @@
 //  Copyright © 2018 blondie.lv. All rights reserved.
 //
 
-#import <Blondie.h>
+#import "Blondie.h"
 
 #import "BlondieSync.h"
 #import "BlondieEvent.h"
@@ -41,19 +41,19 @@
 }
 
 + (void)useDevelopmentEnvironment {
-	[[Blondie sharedInstance].sync setEnvironment:kDevelopment];
+	[[Blondie sharedInstance].sync setupEnvironment:kDevelopment];
 }
 
 + (void)useTestEnvironment {
-	[[Blondie sharedInstance].sync setEnvironment:kTest];
+	[[Blondie sharedInstance].sync setupEnvironment:kTest];
 }
 
 + (void)useProductionEnvironment {
-	[[Blondie sharedInstance].sync setEnvironment:kProduction];
+	[[Blondie sharedInstance].sync setupEnvironment:kProduction];
 }
 
 + (void)setBaseUrl:(NSString *)baseUrl {
-	[[Blondie sharedInstance].sync setBaseUrl:baseUrl];
+	[[Blondie sharedInstance].sync useCustomUrl:baseUrl];
 }
 
 + (void)disableOfflineMode {

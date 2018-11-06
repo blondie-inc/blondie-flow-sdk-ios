@@ -10,8 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class BlondieEvent;
+
 @interface BlondieRequest : NSObject
 
+- (instancetype)initWithEvent:(BlondieEvent *)event;
+	
+- (void)performWithCompletion:(void (^)(BOOL success))completion;
+	
 @end
 
 NS_ASSUME_NONNULL_END

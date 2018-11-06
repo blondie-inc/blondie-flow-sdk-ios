@@ -9,6 +9,8 @@
 #import "BlondieSync.h"
 #import "BlondieStorage.h"
 #import "BlondieReachability.h"
+#import "BlondieRequest.h"
+#import "BlondieEvent.h"
 
 @interface BlondieSync ()
 
@@ -57,12 +59,12 @@
 	self.flowId = flowId;
 }
 	
-- (void)setEnvironment:(BlondieEnvironmentType)environment {
+- (void)setupEnvironment:(BlondieEnvironmentType)environment {
 	self.environment = environment;
 }
 	
-- (void)setBaseUrl:(NSString *)baseUrl {
-	self.baseUrl = baseUrl;
+- (void)useCustomUrl:(NSString *)url {
+	self.baseUrl = url;
 }
 	
 - (void)disableOfflineMode {
@@ -79,34 +81,55 @@
 }
 	
 - (void)addEvent:(BlondieEvent *)event {
+	NSLog(@"addEvent");
+	
 	[self.storage enqueueEvent:event];
 	[self sync];
 }
 
 - (void)sync {
+	NSLog(@"sync");
+	
 	if (self.apiKey == nil || self.flowId == nil) {
 		return;
 	}
 	
 	if (self.hasConnection) {
 		if (!self.syncing) {
-			self.syncing = YES;
-			[self syncEvents];
+			BlondieEvent *event = [self.storage dequeueEvent];
+			if (event) {
+				self.syncing = YES;
+				[self syncEvent:event];
+			}
 		}
 	}
 }
 
-- (void)syncEvents {
-//	dispatch_group_t group = dispatch_group_create();
+- (void)syncEvent:(BlondieEvent *)event {
+	NSLog(@"syncEvent");
 	
-//	dispatch_group_enter(group);
-//	[self computeInBackground:0 completion:^{
-//		dispatch_group_leave(group);
-//	}];
+	dispatch_group_t group = dispatch_group_create();
+	dispatch_group_enter(group);
 	
-//	dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//		[self sync];
-//	});
+	__weak BlondieSync *weakSelf = self;
+	
+	BlondieRequest *request = [[BlondieRequest alloc] initWithEvent:event];
+	[request performWithCompletion:^(BOOL success) {
+		if (success) {
+			NSLog(@"storage.removeEvent %@", [event name]);
+			[weakSelf.storage save];
+		} else {
+			NSLog(@"storage.enqueueEvent %@", [event name]);
+			[weakSelf.storage enqueueEvent:event];
+		}
+		
+		dispatch_group_leave(group);
+	}];
+	
+	dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+		self.syncing = NO;
+		[self sync];
+	});
 }
 	
 - (void)reachabilityChanged:(NSNotification *)note {

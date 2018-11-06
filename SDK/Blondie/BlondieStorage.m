@@ -40,6 +40,10 @@
 		NSArray *events = [NSKeyedUnarchiver unarchiveObjectWithFile:storagePath];
 		if (events && [events count] != 0) {
 			[self.events addObjectsFromArray:events];
+			
+			for (BlondieEvent *e in self.events) {
+				NSLog(@"event %@", e.name);
+			}
 		}
 	} else {
 		[self saveData];
@@ -60,16 +64,7 @@
 	[self saveData];
 }
 	
-- (void)removeEvent:(BlondieEvent *)event {
-	NSUInteger index = 0, selectedIndex = 0;
-	for (BlondieEvent *e in self.events) {
-		if ([e.uid isEqualToString:event.uid]) {
-			selectedIndex = index;
-			break;
-		}
-		++index;
-	}
-	[self.events removeObjectAtIndex:selectedIndex];
+- (void)save {
 	[self saveData];
 }
 	

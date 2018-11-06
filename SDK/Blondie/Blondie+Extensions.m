@@ -13,11 +13,14 @@
 @implementation NSMutableArray (Extensions)
 
 - (id)dequeue {
-	id headObject = [self objectAtIndex:0];
-	if (headObject != nil) {
-		[self removeObjectAtIndex:0];
+	if (self.count > 0) {
+		id headObject = [self objectAtIndex:0];
+		if (headObject != nil) {
+			[self removeObjectAtIndex:0];
+		}
+		return headObject;
 	}
-	return headObject;
+	return nil;
 }
 	
 - (void)enqueue:(id)anObject {

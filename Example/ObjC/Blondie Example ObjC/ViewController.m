@@ -7,16 +7,21 @@
 //
 
 #import "ViewController.h"
+#import <Blondie/Blondie.h>
 
 @interface ViewController ()
-
+	
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+	[Blondie triggerEventWithName:@"event1" metaData:@{
+													   @"param1": @"value1",
+													   @"param2": @"value2"
+													   }];
 }
 
 

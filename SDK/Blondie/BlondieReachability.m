@@ -22,7 +22,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 {
 #pragma unused (target, flags)
 	NSCAssert(info != NULL, @"info was NULL in ReachabilityCallback");
-	NSCAssert([(__bridge NSObject*) info isKindOfClass: [Reachability class]], @"info was wrong class in ReachabilityCallback");
+	NSCAssert([(__bridge NSObject*) info isKindOfClass: [BlondieReachability class]], @"info was wrong class in ReachabilityCallback");
 	
 	BlondieReachability* noteObject = (__bridge BlondieReachability *)info;
 	// Post a notification to notify the client that the network reachability changed.
