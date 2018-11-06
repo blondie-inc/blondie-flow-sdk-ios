@@ -29,6 +29,8 @@ FOUNDATION_EXPORT const unsigned char BlondieVersionString[];
 + (void)setBaseUrl:(NSString *)baseUrl;
 
 + (void)disableOfflineMode;
+	
++ (void)disableAutoRetries;
 
 + (void)triggerEventWithName:(NSString *)name metaData:(NSDictionary *)medaData;
 
