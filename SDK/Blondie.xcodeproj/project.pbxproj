@@ -95,7 +95,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = "Maksym Bilan";
+				ORGANIZATIONNAME = blondie.lv;
 				TargetAttributes = {
 					94BAA39921919E790080A06E = {
 						CreatedOnToolsVersion = 10.1;
