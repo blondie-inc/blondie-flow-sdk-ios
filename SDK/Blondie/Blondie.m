@@ -8,6 +8,8 @@
 
 #import <Blondie.h>
 
+#import "BlondieReachability.h"
+
 typedef NS_ENUM(NSUInteger, BlondieEnvironmentType) {
 	kDevelopment,
 	kTest,
@@ -22,6 +24,8 @@ typedef NS_ENUM(NSUInteger, BlondieEnvironmentType) {
 @property (readwrite, nonatomic) BlondieEnvironmentType environment;
 @property (readwrite, nonatomic) BOOL useOfflineMode;
 @property (readwrite, nonatomic) BOOL useAutoRetries;
+
+@property (nonatomic) BlondieReachability *internetReachability;
 	
 @end
 
@@ -41,8 +45,17 @@ typedef NS_ENUM(NSUInteger, BlondieEnvironmentType) {
 		self.environment = kProduction;
 		self.useOfflineMode = YES;
 		self.useAutoRetries = YES;
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+		
+		self.internetReachability = [BlondieReachability reachabilityForInternetConnection];
+		[self.internetReachability startNotifier];
 	}
 	return self;
+}
+
+- (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 	
 + (void)setApiKey:(NSString *)apiKey forFlowId:(NSString *)flowId {
@@ -78,4 +91,12 @@ typedef NS_ENUM(NSUInteger, BlondieEnvironmentType) {
 	
 }
 
+- (void)reachabilityChanged:(NSNotification *)note {
+	BlondieReachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass:[BlondieReachability class]]);
+	
+	if (curReach == self.internetReachability) {
+	}
+}
+	
 @end
