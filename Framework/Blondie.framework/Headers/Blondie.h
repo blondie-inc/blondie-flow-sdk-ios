@@ -3,7 +3,7 @@
 //  Blondie
 //
 //  Created by Maxim on 11/6/18.
-//  Copyright © 2018 Maksym Bilan. All rights reserved.
+//  Copyright © 2018 blondie.lv. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
