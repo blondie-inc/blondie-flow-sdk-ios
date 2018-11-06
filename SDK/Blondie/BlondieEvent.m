@@ -22,7 +22,7 @@
 - (void)encodeWithCoder:(NSCoder *)encoder {
 	[encoder encodeObject:self.uid forKey:@"uid"];
 	[encoder encodeObject:self.name forKey:@"name"];
-	[encoder encodeBool:self.metadata forKey:@"metadata"];
+	[encoder encodeObject:self.metadata forKey:@"metadata"];
 }
 	
 @end

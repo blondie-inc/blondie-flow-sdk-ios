@@ -8,28 +8,13 @@
 
 #import <Blondie.h>
 
-#import "BlondieReachability.h"
+#import "BlondieSync.h"
 #import "BlondieEvent.h"
-#import "BlondieStorage.h"
-
-typedef NS_ENUM(NSUInteger, BlondieEnvironmentType) {
-	kDevelopment,
-	kTest,
-	kProduction
-};
+#import "Blondie+Extensions.h"
 
 @interface Blondie ()
 
-@property (strong, readwrite, nonatomic) NSString *apiKey;
-@property (strong, readwrite, nonatomic) NSString *flowId;
-@property (strong, readwrite, nonatomic) NSString *baseUrl;
-@property (readwrite, nonatomic) BlondieEnvironmentType environment;
-@property (readwrite, nonatomic) BOOL useOfflineMode;
-@property (readwrite, nonatomic) BOOL useAutoRetries;
-
-@property (strong, readwrite, nonatomic) BlondieStorage *storage;
-	
-@property (nonatomic) BlondieReachability *internetReachability;
+@property (strong, readwrite, nonatomic) BlondieSync *sync;
 	
 @end
 
@@ -46,63 +31,45 @@ typedef NS_ENUM(NSUInteger, BlondieEnvironmentType) {
 
 - (instancetype)init {
 	if (self = [super init]) {
-		self.environment = kProduction;
-		self.useOfflineMode = YES;
-		self.useAutoRetries = YES;
-		
-		self.storage = [[BlondieStorage alloc] init];
-		
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
-		
-		self.internetReachability = [BlondieReachability reachabilityForInternetConnection];
-		[self.internetReachability startNotifier];
+		self.sync = [[BlondieSync alloc] init];
 	}
 	return self;
 }
-
-- (void)dealloc {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
-}
 	
 + (void)setApiKey:(NSString *)apiKey forFlowId:(NSString *)flowId {
-	[Blondie sharedInstance].apiKey = apiKey;
-	[Blondie sharedInstance].flowId = flowId;
+	[[Blondie sharedInstance].sync setApiKey:apiKey forFlowId:flowId];
 }
 
 + (void)useDevelopmentEnvironment {
-	[Blondie sharedInstance].environment = kDevelopment;
+	[[Blondie sharedInstance].sync setEnvironment:kDevelopment];
 }
 
 + (void)useTestEnvironment {
-	[Blondie sharedInstance].environment = kTest;
+	[[Blondie sharedInstance].sync setEnvironment:kTest];
 }
 
 + (void)useProductionEnvironment {
-	[Blondie sharedInstance].environment = kProduction;
+	[[Blondie sharedInstance].sync setEnvironment:kProduction];
 }
 
 + (void)setBaseUrl:(NSString *)baseUrl {
-	[Blondie sharedInstance].baseUrl = baseUrl;
+	[[Blondie sharedInstance].sync setBaseUrl:baseUrl];
 }
 
 + (void)disableOfflineMode {
-	[Blondie sharedInstance].useOfflineMode = NO;
+	[[Blondie sharedInstance].sync disableOfflineMode];
 }
 
 + (void)disableAutoRetries {
-	[Blondie sharedInstance].useAutoRetries = NO;
+	[[Blondie sharedInstance].sync disableAutoRetries];
 }
 	
-+ (void)triggerEventWithName:(NSString *)name metaData:(NSDictionary *)medaData {
-	
-}
-
-- (void)reachabilityChanged:(NSNotification *)note {
-	BlondieReachability* curReach = [note object];
-	NSParameterAssert([curReach isKindOfClass:[BlondieReachability class]]);
-	
-	if (curReach == self.internetReachability) {
-	}
++ (void)triggerEventWithName:(NSString *)name metaData:(NSDictionary *)metaData {
+	BlondieEvent *event = [[BlondieEvent alloc] init];
+	event.uid = [NSDate date].uid;
+	event.name = name;
+	event.metadata = metaData;
+	[[Blondie sharedInstance].sync addEvent:event];
 }
 	
 @end

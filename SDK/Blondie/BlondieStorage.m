@@ -8,6 +8,7 @@
 
 #import "BlondieStorage.h"
 #import "BlondieEvent.h"
+#import "Blondie+Extensions.h"
 
 @interface BlondieStorage ()
 
@@ -49,9 +50,13 @@
 	NSString *storagePath = [self storagePath];
 	[NSKeyedArchiver archiveRootObject:self.events toFile:storagePath];
 }
+
+- (BlondieEvent *)dequeueEvent {
+	return [self.events dequeue];
+}
 	
-- (void)addEvent:(BlondieEvent *)event {
-	[self.events addObject:event];
+- (void)enqueueEvent:(BlondieEvent *)event {
+	[self.events enqueue:event];
 	[self saveData];
 }
 	

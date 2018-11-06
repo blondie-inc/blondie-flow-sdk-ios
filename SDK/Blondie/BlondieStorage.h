@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BlondieStorage : NSObject
 
-- (void)addEvent:(BlondieEvent *)event;
+- (BlondieEvent *)dequeueEvent;
+- (void)enqueueEvent:(BlondieEvent *)event;
 - (void)removeEvent:(BlondieEvent *)event;
 	
 @end
