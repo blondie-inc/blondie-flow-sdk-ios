@@ -13,7 +13,23 @@
 		94BAA3E12191AACC0080A06E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94BAA3E02191AACC0080A06E /* Assets.xcassets */; };
 		94BAA3E42191AACC0080A06E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94BAA3E22191AACC0080A06E /* LaunchScreen.storyboard */; };
 		94BAA3E72191AACC0080A06E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BAA3E62191AACC0080A06E /* main.m */; };
+		94BAA3EE2191ABB20080A06E /* Blondie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BAA3ED2191ABB20080A06E /* Blondie.framework */; };
+		94BAA3EF2191ABB20080A06E /* Blondie.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 94BAA3ED2191ABB20080A06E /* Blondie.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		94BAA3F02191ABB20080A06E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				94BAA3EF2191ABB20080A06E /* Blondie.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		94BAA3D42191AACA0080A06E /* Blondie Example ObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blondie Example ObjC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,6 +42,7 @@
 		94BAA3E32191AACC0080A06E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94BAA3E52191AACC0080A06E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94BAA3E62191AACC0080A06E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		94BAA3ED2191ABB20080A06E /* Blondie.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Blondie.framework; path = ../../Framework/Blondie.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94BAA3EE2191ABB20080A06E /* Blondie.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +60,7 @@
 		94BAA3CB2191AACA0080A06E = {
 			isa = PBXGroup;
 			children = (
+				94BAA3ED2191ABB20080A06E /* Blondie.framework */,
 				94BAA3D62191AACA0080A06E /* Blondie Example ObjC */,
 				94BAA3D52191AACA0080A06E /* Products */,
 			);
@@ -81,6 +100,7 @@
 				94BAA3D02191AACA0080A06E /* Sources */,
 				94BAA3D12191AACA0080A06E /* Frameworks */,
 				94BAA3D22191AACA0080A06E /* Resources */,
+				94BAA3F02191ABB20080A06E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -286,6 +306,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../Framework\"";
 				INFOPLIST_FILE = "Blondie Example ObjC/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +323,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../../Framework\"";
 				INFOPLIST_FILE = "Blondie Example ObjC/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
