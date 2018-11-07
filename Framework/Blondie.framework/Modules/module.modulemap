@@ -1,0 +1,6 @@
+framework module Blondie {
+  umbrella header "Blondie.h"
+
+  export *
+  module * { export * }
+}
