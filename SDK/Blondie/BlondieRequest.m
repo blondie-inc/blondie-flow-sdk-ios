@@ -12,21 +12,28 @@
 @interface BlondieRequest ()
 
 @property (strong, readwrite, nonatomic) BlondieEvent *event;
+@property (readwrite, nonatomic) BlondieEnvironmentType environment;
+@property (strong, readwrite, nonatomic) NSString *customUrl;
 	
 @end
 
 @implementation BlondieRequest
 
-- (instancetype)initWithEvent:(BlondieEvent *)event {
+- (instancetype)initWithEvent:(BlondieEvent *)event environment:(BlondieEnvironmentType)environment {
 	self = [super init];
 	if (self) {
 		self.event = event;
+		self.environment = environment;
 	}
 	return self;
 }
 
+- (void)useCustomUrl:(NSString *)customUrl {
+	self.customUrl = customUrl;
+}
+
 - (void)performWithCompletion:(void (^)(BOOL success))completion {
-	NSURL *URL = [NSURL URLWithString:@"https://www.google.com"];
+	NSURL *URL = [NSURL URLWithString:(self.customUrl ? self.customUrl : @"https://www.google.com")];
 	NSURLRequest *request = [NSURLRequest requestWithURL:URL];
 	
 	[[BlondieLogger sharedInstance] print:URL.absoluteString];
@@ -36,7 +43,6 @@
 											completionHandler:
 								  ^(NSData *data, NSURLResponse *response, NSError *error) {
 									  NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-									  
 									  dispatch_async(dispatch_get_main_queue(), ^{
 										  if (httpResponse) {
 											  completion(httpResponse.statusCode >= 200 && httpResponse.statusCode < 300);

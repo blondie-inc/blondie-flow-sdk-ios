@@ -21,7 +21,7 @@ static const NSInteger BlondieSyncAutoRetryLimit = 3;
 
 @property (strong, readwrite, nonatomic) NSString *apiKey;
 @property (strong, readwrite, nonatomic) NSString *flowId;
-@property (strong, readwrite, nonatomic) NSString *baseUrl;
+@property (strong, readwrite, nonatomic) NSString *customUrl;
 @property (readwrite, nonatomic) BlondieEnvironmentType environment;
 @property (readwrite, nonatomic) BOOL useAutoRetries;
 	
@@ -96,7 +96,7 @@ static const NSInteger BlondieSyncAutoRetryLimit = 3;
 }
 	
 - (void)useCustomUrl:(NSString *)url {
-	self.baseUrl = url;
+	self.customUrl = url;
 }
 	
 - (void)disableOfflineMode {
@@ -125,7 +125,7 @@ static const NSInteger BlondieSyncAutoRetryLimit = 3;
 	}
 	
 	if (self.apiKey == nil || self.flowId == nil) {
-		[[BlondieLogger sharedInstance] print:@"Please call setApiKey:forFlowId: method."];
+		[[BlondieLogger sharedInstance] print:@"Please call setApiKey:forFlowId: method first."];
 		return;
 	}
 	
@@ -155,7 +155,8 @@ static const NSInteger BlondieSyncAutoRetryLimit = 3;
 	__weak BlondieSync *weakSelf = self;
 	__block BOOL retry = NO;
 	
-	BlondieRequest *request = [[BlondieRequest alloc] initWithEvent:event];
+	BlondieRequest *request = [[BlondieRequest alloc] initWithEvent:event environment:self.environment];
+	[request useCustomUrl:self.customUrl];
 	[request performWithCompletion:^(BOOL success) {
 		if (success) {
 			weakSelf.errorCounter = 0;

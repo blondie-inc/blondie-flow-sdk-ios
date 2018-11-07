@@ -8,14 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BlondieTypes.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class BlondieEvent;
 
 @interface BlondieRequest : NSObject
 
-- (instancetype)initWithEvent:(BlondieEvent *)event;
-	
+- (instancetype)initWithEvent:(BlondieEvent *)event environment:(BlondieEnvironmentType)environment;
+
+- (void)useCustomUrl:(NSString *)customUrl;
 - (void)performWithCompletion:(void (^)(BOOL success))completion;
 	
 @end

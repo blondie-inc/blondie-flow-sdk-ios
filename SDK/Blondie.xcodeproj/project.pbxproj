@@ -44,6 +44,7 @@
 		94BAA39D21919E790080A06E /* Blondie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Blondie.h; sourceTree = "<group>"; };
 		94BAA39E21919E790080A06E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94BAA3A52191A0740080A06E /* Blondie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Blondie.m; sourceTree = "<group>"; };
+		94CC15C32192FEE700BF8ED6 /* BlondieTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlondieTypes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +80,7 @@
 				94BAA39E21919E790080A06E /* Info.plist */,
 				94BAA39D21919E790080A06E /* Blondie.h */,
 				94BAA3A52191A0740080A06E /* Blondie.m */,
+				94CC15C32192FEE700BF8ED6 /* BlondieTypes.h */,
 				94091B9B2191FA1100629D32 /* BlondieSync.h */,
 				94091B9C2191FA1100629D32 /* BlondieSync.m */,
 				94091B852191DB1800629D32 /* BlondieReachability.h */,
