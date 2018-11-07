@@ -13,6 +13,8 @@
 #import "BlondieEvent.h"
 #import "BlondieLogger.h"
 
+static const NSTimeInterval BlondieSyncLaunchDelay = 5.0f;
+
 @interface BlondieSync ()
 
 @property (strong, readwrite, nonatomic) NSString *apiKey;
@@ -23,10 +25,13 @@
 @property (readwrite, nonatomic) BOOL useAutoRetries;
 	
 @property (strong, readwrite, nonatomic) BlondieStorage *storage;
-@property (nonatomic) BlondieReachability *internetReachability;
+@property (strong, readwrite, nonatomic) BlondieReachability *internetReachability;
+
+@property (strong, readwrite, nonatomic) NSTimer *timer;
 
 @property (nonatomic) BOOL syncing;
 @property (nonatomic) BOOL hasConnection;
+@property (nonatomic) BOOL paused;
 	
 @end
 
@@ -47,6 +52,9 @@
 		
 		self.syncing = NO;
 		[self checkConnection];
+		
+		self.timer = [NSTimer scheduledTimerWithTimeInterval:BlondieSyncLaunchDelay target:self selector:@selector(handleTimer:) userInfo:nil repeats:NO];
+		self.paused = YES;
 	}
 	return self;
 }
@@ -89,7 +97,9 @@
 }
 
 - (void)sync {
-	[[BlondieLogger sharedInstance] print:@"Start sync"];
+	if (self.paused) {
+		return;
+	}
 	
 	if (self.apiKey == nil || self.flowId == nil) {
 		[[BlondieLogger sharedInstance] print:@"Please call setApiKey:forFlowId: method."];
@@ -98,6 +108,8 @@
 	
 	if (self.hasConnection) {
 		if (!self.syncing) {
+			[[BlondieLogger sharedInstance] print:@"Start sync"];
+			
 			BlondieEvent *event = [self.storage dequeueEvent];
 			if (event) {
 				self.syncing = YES;
@@ -106,6 +118,8 @@
 				[[BlondieLogger sharedInstance] print:@"There are no events to sync."];
 			}
 		}
+	} else {
+		[[BlondieLogger sharedInstance] print:@"No internet connection"];
 	}
 }
 
@@ -135,7 +149,14 @@
 		[self sync];
 	});
 }
-	
+
+- (void)handleTimer:(NSTimer *)timer {
+	[self.timer invalidate];
+	self.timer = nil;
+	self.paused = NO;
+	[self sync];
+}
+
 - (void)reachabilityChanged:(NSNotification *)note {
 	BlondieReachability *curReach = [note object];
 	NSParameterAssert([curReach isKindOfClass:[BlondieReachability class]]);

@@ -29,6 +29,8 @@
 	NSURL *URL = [NSURL URLWithString:@"https://www.google.com"];
 	NSURLRequest *request = [NSURLRequest requestWithURL:URL];
 	
+	[[BlondieLogger sharedInstance] print:URL.absoluteString];
+	
 	NSURLSession *session = [NSURLSession sharedSession];
 	NSURLSessionDataTask *task = [session dataTaskWithRequest:request
 											completionHandler:

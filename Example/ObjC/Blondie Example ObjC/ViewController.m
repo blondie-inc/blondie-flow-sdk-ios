@@ -10,7 +10,12 @@
 #import <Blondie/Blondie.h>
 
 @interface ViewController ()
-	
+{
+	NSInteger eventCounter;
+}
+
+@property (weak, nonatomic) IBOutlet UIButton *triggerEventButton;
+
 @end
 
 @implementation ViewController
@@ -18,11 +23,16 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	[Blondie triggerEventWithName:@"event1" metaData:@{
-													   @"param1": @"value1",
-													   @"param2": @"value2"
-													   }];
+	eventCounter = 0;
 }
 
+- (IBAction)triggerEventAction:(UIButton *)sender {
+	[Blondie triggerEventWithName:[NSString stringWithFormat:@"Event%ld", eventCounter]
+						 metaData:@{
+									@"param1": @"value1",
+									@"param2": @"value2"
+									}];
+	++eventCounter;
+}
 
 @end

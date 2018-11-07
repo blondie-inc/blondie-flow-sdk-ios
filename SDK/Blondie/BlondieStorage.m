@@ -42,11 +42,9 @@
 		if (events && [events count] != 0) {
 			[self.events addObjectsFromArray:events];
 			
-			if ([BlondieLogger sharedInstance].enabled) {
-				[[BlondieLogger sharedInstance] print:@"Cached events:"];
-				for (BlondieEvent *e in self.events) {
-					[[BlondieLogger sharedInstance] print:e.name];
-				}
+			[[BlondieLogger sharedInstance] print:@"Cached events:"];
+			for (BlondieEvent *e in self.events) {
+				[[BlondieLogger sharedInstance] print:e.name];
 			}
 		}
 	} else {
