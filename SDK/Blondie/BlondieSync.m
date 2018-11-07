@@ -14,6 +14,7 @@
 #import "BlondieLogger.h"
 
 static const NSTimeInterval BlondieSyncLaunchDelay = 5.0f;
+static const NSInteger BlondieSyncBackendErrorLimit = 3;
 
 @interface BlondieSync ()
 
@@ -29,10 +30,13 @@ static const NSTimeInterval BlondieSyncLaunchDelay = 5.0f;
 
 @property (strong, readwrite, nonatomic) NSTimer *timer;
 
-@property (nonatomic) BOOL syncing;
-@property (nonatomic) BOOL hasConnection;
-@property (nonatomic) BOOL paused;
-	
+@property (nonatomic, readwrite) BOOL syncing;
+@property (nonatomic, readwrite) BOOL hasConnection;
+@property (nonatomic, readwrite) BOOL paused;
+
+@property (nonatomic, readwrite) NSInteger threshold;
+@property (nonatomic, readwrite) NSInteger errorCounter;
+
 @end
 
 @implementation BlondieSync
@@ -51,6 +55,8 @@ static const NSTimeInterval BlondieSyncLaunchDelay = 5.0f;
 		[self.internetReachability startNotifier];
 		
 		self.syncing = NO;
+		self.threshold = 0;
+		self.errorCounter = 0;
 		[self checkConnection];
 		
 		self.timer = [NSTimer scheduledTimerWithTimeInterval:BlondieSyncLaunchDelay target:self selector:@selector(handleTimer:) userInfo:nil repeats:NO];
@@ -61,6 +67,24 @@ static const NSTimeInterval BlondieSyncLaunchDelay = 5.0f;
 	
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
+}
+
++ (NSArray *)intervals {
+	static NSArray *_intervals;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		_intervals = @[@(10), @(30), @(60), @(300), @(1800), @(3600)];
+	});
+	return _intervals;
+}
+
+- (NSTimeInterval)pauseInterval {
+	NSArray *intervals = [[self class] intervals];
+	if (self.threshold < [intervals count]) {
+		return [intervals[self.threshold] doubleValue];
+	} else {
+		return [[intervals lastObject] doubleValue];
+	}
 }
 
 - (void)setApiKey:(NSString *)apiKey forFlowId:(NSString *)flowId {
@@ -134,11 +158,16 @@ static const NSTimeInterval BlondieSyncLaunchDelay = 5.0f;
 	BlondieRequest *request = [[BlondieRequest alloc] initWithEvent:event];
 	[request performWithCompletion:^(BOOL success) {
 		if (success) {
+			weakSelf.errorCounter = 0;
+			weakSelf.threshold = 0;
+			
 			[[BlondieLogger sharedInstance] print:[NSString stringWithFormat:@"Removed event: %@", event.name]];
 			[weakSelf.storage save];
 		} else {
-			[[BlondieLogger sharedInstance] print:[NSString stringWithFormat:@"Wnqueue event: %@", event.name]];
+			[[BlondieLogger sharedInstance] print:[NSString stringWithFormat:@"Enqueue event: %@", event.name]];
 			[weakSelf.storage enqueueEvent:event];
+			weakSelf.errorCounter++;
+			[weakSelf pauseSyncing];
 		}
 		
 		dispatch_group_leave(group);
@@ -150,10 +179,23 @@ static const NSTimeInterval BlondieSyncLaunchDelay = 5.0f;
 	});
 }
 
+- (void)pauseSyncing {
+	if (self.errorCounter == BlondieSyncBackendErrorLimit) {
+		NSTimeInterval interval = [self pauseInterval];
+		++self.threshold;
+		
+		[[BlondieLogger sharedInstance] print:[NSString stringWithFormat:@"Paused syncing on %.0f seconds", interval]];
+		
+		self.timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(handleTimer:) userInfo:nil repeats:NO];
+		self.paused = YES;
+	}
+}
+
 - (void)handleTimer:(NSTimer *)timer {
 	[self.timer invalidate];
 	self.timer = nil;
 	self.paused = NO;
+	self.errorCounter = 0;
 	[self sync];
 }
 
@@ -163,6 +205,9 @@ static const NSTimeInterval BlondieSyncLaunchDelay = 5.0f;
 	
 	if (curReach == self.internetReachability) {
 		[self checkConnection];
+		
+		self.errorCounter = 0;
+		self.threshold = 0;
 		
 		if (self.hasConnection) {
 			[self sync];
