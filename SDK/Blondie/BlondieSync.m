@@ -22,7 +22,6 @@ static const NSInteger BlondieSyncBackendErrorLimit = 3;
 @property (strong, readwrite, nonatomic) NSString *flowId;
 @property (strong, readwrite, nonatomic) NSString *baseUrl;
 @property (readwrite, nonatomic) BlondieEnvironmentType environment;
-@property (readwrite, nonatomic) BOOL useOfflineMode;
 @property (readwrite, nonatomic) BOOL useAutoRetries;
 	
 @property (strong, readwrite, nonatomic) BlondieStorage *storage;
@@ -44,7 +43,6 @@ static const NSInteger BlondieSyncBackendErrorLimit = 3;
 - (instancetype)init {
 	if (self = [super init]) {
 		self.environment = kProduction;
-		self.useOfflineMode = YES;
 		self.useAutoRetries = YES;
 		
 		self.storage = [[BlondieStorage alloc] init];
@@ -101,7 +99,7 @@ static const NSInteger BlondieSyncBackendErrorLimit = 3;
 }
 	
 - (void)disableOfflineMode {
-	self.useOfflineMode = NO;
+	[self.storage disableSaveOnDisk];
 }
 	
 - (void)disableAutoRetries {

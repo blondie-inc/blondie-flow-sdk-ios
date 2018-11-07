@@ -14,13 +14,15 @@
 @interface BlondieStorage ()
 
 @property (strong, readwrite, nonatomic) NSMutableArray *events;
-	
+@property (readwrite, nonatomic) BOOL saveOnDisk;
+
 @end
 
 @implementation BlondieStorage
 
 - (instancetype)init {
 	if (self = [super init]) {
+		self.saveOnDisk = YES;
 		self.events = [NSMutableArray array];
 		[self loadData];
 	}
@@ -53,8 +55,10 @@
 }
 
 - (void)saveData {
-	NSString *storagePath = [self storagePath];
-	[NSKeyedArchiver archiveRootObject:self.events toFile:storagePath];
+	if (self.saveOnDisk) {
+		NSString *storagePath = [self storagePath];
+		[NSKeyedArchiver archiveRootObject:self.events toFile:storagePath];
+	}
 }
 
 - (BlondieEvent *)dequeueEvent {
@@ -69,5 +73,9 @@
 - (void)save {
 	[self saveData];
 }
-	
+
+- (void)disableSaveOnDisk {
+	self.saveOnDisk = NO;
+}
+
 @end

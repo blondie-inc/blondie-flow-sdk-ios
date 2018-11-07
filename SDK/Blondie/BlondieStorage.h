@@ -17,7 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BlondieEvent *)dequeueEvent;
 - (void)enqueueEvent:(BlondieEvent *)event;
 - (void)save;
-	
+- (void)disableSaveOnDisk;
+
 @end
 
 NS_ASSUME_NONNULL_END
