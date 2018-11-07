@@ -20,6 +20,7 @@
 	
 	[Blondie setApiKey:@"INSERT_API_KEY_HERE" forFlowId:@"INSERT_FLOW_ID_HERE"];
 	[Blondie enableLogging];
+	[Blondie useDevelopmentEnvironment];
 //	[Blondie disableAutoRetries];
 //	[Blondie setBaseUrl:@"http://example.com"];
 	

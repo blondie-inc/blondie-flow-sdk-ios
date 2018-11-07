@@ -28,12 +28,31 @@
 	return self;
 }
 
+- (NSString *)baseUrl {
+	NSString *url = nil;
+	switch (self.environment) {
+		case kDevelopment:
+			url = @"https://flow-dev.blondie.lv/webhooks/events";
+			break;
+		case kTest:
+			url = @"https://flow-test.blondie.lv/webhooks/events";
+			break;
+		case kProduction:
+			url = @"https://flow.blondie.lv/webhooks/events";
+			break;
+		default:
+			url = @"https://flow.blondie.lv/webhooks/events";
+			break;
+	}
+	return url;
+}
+
 - (void)useCustomUrl:(NSString *)customUrl {
 	self.customUrl = customUrl;
 }
 
 - (void)performWithCompletion:(void (^)(BOOL success))completion {
-	NSURL *URL = [NSURL URLWithString:(self.customUrl ? self.customUrl : @"https://www.google.com")];
+	NSURL *URL = [NSURL URLWithString:(self.customUrl ? self.customUrl : [self baseUrl])];
 	NSURLRequest *request = [NSURLRequest requestWithURL:URL];
 	
 	[[BlondieLogger sharedInstance] print:URL.absoluteString];
