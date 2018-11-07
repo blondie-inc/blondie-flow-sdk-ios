@@ -7,7 +7,6 @@
 //
 
 #import "Blondie.h"
-
 #import "BlondieSync.h"
 #import "BlondieEvent.h"
 #import "Blondie+Extensions.h"
