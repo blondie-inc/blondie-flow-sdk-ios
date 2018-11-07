@@ -19,6 +19,8 @@
 		94091B9E2191FA1100629D32 /* BlondieSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 94091B9C2191FA1100629D32 /* BlondieSync.m */; };
 		94091BA12191FF7400629D32 /* Blondie+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 94091B9F2191FF7400629D32 /* Blondie+Extensions.h */; };
 		94091BA22191FF7400629D32 /* Blondie+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 94091BA02191FF7400629D32 /* Blondie+Extensions.m */; };
+		944108902192BB5800EB56E9 /* BlondieLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 9441088E2192BB5800EB56E9 /* BlondieLogger.h */; };
+		944108912192BB5800EB56E9 /* BlondieLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9441088F2192BB5800EB56E9 /* BlondieLogger.m */; };
 		94BAA39F21919E790080A06E /* Blondie.h in Headers */ = {isa = PBXBuildFile; fileRef = 94BAA39D21919E790080A06E /* Blondie.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94BAA3A62191A0740080A06E /* Blondie.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BAA3A52191A0740080A06E /* Blondie.m */; };
 /* End PBXBuildFile section */
@@ -36,6 +38,8 @@
 		94091B9C2191FA1100629D32 /* BlondieSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlondieSync.m; sourceTree = "<group>"; };
 		94091B9F2191FF7400629D32 /* Blondie+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Blondie+Extensions.h"; sourceTree = "<group>"; };
 		94091BA02191FF7400629D32 /* Blondie+Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Blondie+Extensions.m"; sourceTree = "<group>"; };
+		9441088E2192BB5800EB56E9 /* BlondieLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlondieLogger.h; sourceTree = "<group>"; };
+		9441088F2192BB5800EB56E9 /* BlondieLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlondieLogger.m; sourceTree = "<group>"; };
 		94BAA39A21919E790080A06E /* Blondie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Blondie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94BAA39D21919E790080A06E /* Blondie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Blondie.h; sourceTree = "<group>"; };
 		94BAA39E21919E790080A06E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 				94091B982191F72D00629D32 /* BlondieRequest.m */,
 				94091B9F2191FF7400629D32 /* Blondie+Extensions.h */,
 				94091BA02191FF7400629D32 /* Blondie+Extensions.m */,
+				9441088E2192BB5800EB56E9 /* BlondieLogger.h */,
+				9441088F2192BB5800EB56E9 /* BlondieLogger.m */,
 			);
 			path = Blondie;
 			sourceTree = "<group>";
@@ -100,6 +106,7 @@
 			files = (
 				94091B8F2191E1E900629D32 /* BlondieStorage.h in Headers */,
 				94091B992191F72D00629D32 /* BlondieRequest.h in Headers */,
+				944108902192BB5800EB56E9 /* BlondieLogger.h in Headers */,
 				94091B8B2191E1A500629D32 /* BlondieEvent.h in Headers */,
 				94BAA39F21919E790080A06E /* Blondie.h in Headers */,
 				94091B872191DB1800629D32 /* BlondieReachability.h in Headers */,
@@ -199,6 +206,7 @@
 				94091B902191E1E900629D32 /* BlondieStorage.m in Sources */,
 				94091B8C2191E1A500629D32 /* BlondieEvent.m in Sources */,
 				94BAA3A62191A0740080A06E /* Blondie.m in Sources */,
+				944108912192BB5800EB56E9 /* BlondieLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

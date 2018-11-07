@@ -32,4 +32,6 @@ FOUNDATION_EXPORT const unsigned char BlondieVersionString[];
 
 + (void)triggerEventWithName:(NSString *)name metaData:(NSDictionary *)metaData;
 
++ (void)enableLogging;
+
 @end

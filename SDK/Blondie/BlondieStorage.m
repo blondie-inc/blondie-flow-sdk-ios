@@ -9,6 +9,7 @@
 #import "BlondieStorage.h"
 #import "BlondieEvent.h"
 #import "Blondie+Extensions.h"
+#import "BlondieLogger.h"
 
 @interface BlondieStorage ()
 
@@ -41,8 +42,11 @@
 		if (events && [events count] != 0) {
 			[self.events addObjectsFromArray:events];
 			
-			for (BlondieEvent *e in self.events) {
-				NSLog(@"event %@", e.name);
+			if ([BlondieLogger sharedInstance].enabled) {
+				[[BlondieLogger sharedInstance] print:@"Cached events:"];
+				for (BlondieEvent *e in self.events) {
+					[[BlondieLogger sharedInstance] print:e.name];
+				}
 			}
 		}
 	} else {

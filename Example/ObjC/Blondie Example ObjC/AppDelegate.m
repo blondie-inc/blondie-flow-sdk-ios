@@ -19,6 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
 	[Blondie setApiKey:@"" forFlowId:@""];
+	[Blondie enableLogging];
 	
 	return YES;
 }

@@ -11,6 +11,7 @@
 #import "BlondieReachability.h"
 #import "BlondieRequest.h"
 #import "BlondieEvent.h"
+#import "BlondieLogger.h"
 
 @interface BlondieSync ()
 
@@ -81,16 +82,17 @@
 }
 	
 - (void)addEvent:(BlondieEvent *)event {
-	NSLog(@"addEvent");
+	[[BlondieLogger sharedInstance] print:[NSString stringWithFormat:@"Added event: %@", event.name]];
 	
 	[self.storage enqueueEvent:event];
 	[self sync];
 }
 
 - (void)sync {
-	NSLog(@"sync");
+	[[BlondieLogger sharedInstance] print:@"Start sync"];
 	
 	if (self.apiKey == nil || self.flowId == nil) {
+		[[BlondieLogger sharedInstance] print:@"Please call setApiKey:forFlowId: method."];
 		return;
 	}
 	
@@ -100,13 +102,15 @@
 			if (event) {
 				self.syncing = YES;
 				[self syncEvent:event];
+			} else {
+				[[BlondieLogger sharedInstance] print:@"There are no events to sync."];
 			}
 		}
 	}
 }
 
 - (void)syncEvent:(BlondieEvent *)event {
-	NSLog(@"syncEvent");
+	[[BlondieLogger sharedInstance] print:[NSString stringWithFormat:@"Sync event: %@", event.name]];
 	
 	dispatch_group_t group = dispatch_group_create();
 	dispatch_group_enter(group);
@@ -116,10 +120,10 @@
 	BlondieRequest *request = [[BlondieRequest alloc] initWithEvent:event];
 	[request performWithCompletion:^(BOOL success) {
 		if (success) {
-			NSLog(@"storage.removeEvent %@", [event name]);
+			[[BlondieLogger sharedInstance] print:[NSString stringWithFormat:@"Removed event: %@", event.name]];
 			[weakSelf.storage save];
 		} else {
-			NSLog(@"storage.enqueueEvent %@", [event name]);
+			[[BlondieLogger sharedInstance] print:[NSString stringWithFormat:@"Wnqueue event: %@", event.name]];
 			[weakSelf.storage enqueueEvent:event];
 		}
 		

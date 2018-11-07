@@ -11,6 +11,7 @@
 #import "BlondieSync.h"
 #import "BlondieEvent.h"
 #import "Blondie+Extensions.h"
+#import "BlondieLogger.h"
 
 @interface Blondie ()
 
@@ -71,5 +72,9 @@
 	event.metadata = metaData;
 	[[Blondie sharedInstance].sync addEvent:event];
 }
-	
+
++ (void)enableLogging {
+	[BlondieLogger sharedInstance].enabled = YES;
+}
+
 @end

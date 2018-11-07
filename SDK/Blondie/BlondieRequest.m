@@ -7,6 +7,7 @@
 //
 
 #import "BlondieRequest.h"
+#import "BlondieLogger.h"
 
 @interface BlondieRequest ()
 
