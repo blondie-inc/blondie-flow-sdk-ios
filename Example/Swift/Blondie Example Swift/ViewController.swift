@@ -9,12 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
+	
+	@IBOutlet weak var triggerEventButton: UIButton!
+	
+	private var eventCounter = 0
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
+	@IBAction func triggerEventAction(_ sender: UIButton) {
+		Blondie.triggerEvent(withName: String("Event\(eventCounter)"), metaData: ["param1": "value1",
+																				  "param2": "value2"])
+		eventCounter+=1
 	}
 
-
 }
-
