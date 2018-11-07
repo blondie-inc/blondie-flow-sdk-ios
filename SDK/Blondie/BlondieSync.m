@@ -15,6 +15,7 @@
 
 static const NSTimeInterval BlondieSyncLaunchDelay = 5.0f;
 static const NSInteger BlondieSyncBackendErrorLimit = 3;
+static const NSInteger BlondieSyncAutoRetryLimit = 3;
 
 @interface BlondieSync ()
 
@@ -152,6 +153,7 @@ static const NSInteger BlondieSyncBackendErrorLimit = 3;
 	dispatch_group_enter(group);
 	
 	__weak BlondieSync *weakSelf = self;
+	__block BOOL retry = NO;
 	
 	BlondieRequest *request = [[BlondieRequest alloc] initWithEvent:event];
 	[request performWithCompletion:^(BOOL success) {
@@ -162,9 +164,15 @@ static const NSInteger BlondieSyncBackendErrorLimit = 3;
 			[[BlondieLogger sharedInstance] print:[NSString stringWithFormat:@"Removed event: %@", event.name]];
 			[weakSelf.storage save];
 		} else {
-			[[BlondieLogger sharedInstance] print:[NSString stringWithFormat:@"Enqueue event: %@", event.name]];
-			[weakSelf.storage enqueueEvent:event];
 			weakSelf.errorCounter++;
+			
+			if (weakSelf.errorCounter < BlondieSyncAutoRetryLimit && weakSelf.useAutoRetries) {
+				retry = YES;
+			} else {
+				[[BlondieLogger sharedInstance] print:[NSString stringWithFormat:@"Enqueue event: %@", event.name]];
+				[weakSelf.storage enqueueEvent:event];
+			}
+			
 			[weakSelf pauseSyncing];
 		}
 		
@@ -173,7 +181,11 @@ static const NSInteger BlondieSyncBackendErrorLimit = 3;
 	
 	dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
 		self.syncing = NO;
-		[self sync];
+		if (retry) {
+			[self syncEvent:event];
+		} else {
+			[self sync];
+		}
 	});
 }
 
