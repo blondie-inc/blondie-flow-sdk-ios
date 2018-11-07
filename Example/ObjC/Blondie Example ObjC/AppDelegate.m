@@ -18,8 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
-	[Blondie setApiKey:@"" forFlowId:@""];
+	[Blondie setApiKey:@"INSERT_API_KEY_HERE" forFlowId:@"INSERT_FLOW_ID_HERE"];
 	[Blondie enableLogging];
+//	[Blondie disableAutoRetries];
+//	[Blondie setBaseUrl:@"http://example.com"];
 	
 	return YES;
 }
