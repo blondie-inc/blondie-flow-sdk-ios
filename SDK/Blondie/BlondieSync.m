@@ -19,7 +19,7 @@ static const NSInteger BlondieSyncAutoRetryLimit = 3;
 
 @interface BlondieSync ()
 
-@property (strong, readwrite, nonatomic) NSString *apiKey;
+@property (strong, readwrite, nonatomic) NSString *token;
 @property (strong, readwrite, nonatomic) NSString *customUrl;
 @property (readwrite, nonatomic) BlondieEnvironmentType environment;
 @property (readwrite, nonatomic) BOOL useAutoRetries;
@@ -85,8 +85,8 @@ static const NSInteger BlondieSyncAutoRetryLimit = 3;
 	}
 }
 
-- (void)setupApiKey:(NSString *)apiKey {
-	self.apiKey = apiKey;
+- (void)setupToken:(NSString *)token {
+	self.token = token;
 }
 
 - (void)setupEnvironment:(BlondieEnvironmentType)environment {

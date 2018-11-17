@@ -37,7 +37,7 @@
 }
 	
 + (void)setApiKey:(NSString *)apiKey {
-	[[Blondie sharedInstance].sync setupApiKey:apiKey];
+	[[Blondie sharedInstance].sync setupToken:apiKey];
 }
 
 + (void)useDevelopmentEnvironment {

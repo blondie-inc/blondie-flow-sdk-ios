@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BlondieSync : NSObject
 
-- (void)setupApiKey:(NSString *)apiKey;
+- (void)setupToken:(NSString *)token;
 - (void)setupEnvironment:(BlondieEnvironmentType)environment;
 - (void)useCustomUrl:(NSString *)url;
 - (void)disableOfflineMode;

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BlondieRequest : NSObject
 
-- (instancetype)initWithEvent:(BlondieEvent *)event environment:(BlondieEnvironmentType)environment;
+- (instancetype)initWithEvent:(BlondieEvent *)event token:(NSString *)token environment:(BlondieEnvironmentType)environment;
 
 - (void)useCustomUrl:(NSString *)customUrl;
 - (void)performWithCompletion:(void (^)(BOOL success))completion;

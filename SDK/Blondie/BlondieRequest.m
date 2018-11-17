@@ -12,6 +12,7 @@
 @interface BlondieRequest ()
 
 @property (strong, readwrite, nonatomic) BlondieEvent *event;
+@property (strong, readwrite, nonatomic) NSString *token;
 @property (readwrite, nonatomic) BlondieEnvironmentType environment;
 @property (strong, readwrite, nonatomic) NSString *customUrl;
 	
@@ -19,10 +20,11 @@
 
 @implementation BlondieRequest
 
-- (instancetype)initWithEvent:(BlondieEvent *)event environment:(BlondieEnvironmentType)environment {
+- (instancetype)initWithEvent:(BlondieEvent *)event token:(NSString *)token environment:(BlondieEnvironmentType)environment {
 	self = [super init];
 	if (self) {
 		self.event = event;
+		self.token = token;
 		self.environment = environment;
 	}
 	return self;
@@ -53,7 +55,9 @@
 
 - (void)performWithCompletion:(void (^)(BOOL success))completion {
 	NSURL *URL = [NSURL URLWithString:(self.customUrl ? self.customUrl : [self baseUrl])];
-	NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+	request.HTTPMethod = @"POST";
+	[request addValue:[NSString stringWithFormat:@"Bearer %@", self.token] forHTTPHeaderField:@"Authorization"];
 	
 	[[BlondieLogger sharedInstance] print:URL.absoluteString];
 	
