@@ -122,7 +122,7 @@ static const NSInteger BlondieSyncAutoRetryLimit = 3;
 		return;
 	}
 	
-	if (self.apiKey == nil) {
+	if (self.token == nil) {
 		[[BlondieLogger sharedInstance] print:@"Please call 'setApiKey' method first."];
 		return;
 	}
@@ -153,7 +153,7 @@ static const NSInteger BlondieSyncAutoRetryLimit = 3;
 	__weak BlondieSync *weakSelf = self;
 	__block BOOL retry = NO;
 	
-	BlondieRequest *request = [[BlondieRequest alloc] initWithEvent:event environment:self.environment];
+	BlondieRequest *request = [[BlondieRequest alloc] initWithEvent:event token:self.token environment:self.environment];
 	[request useCustomUrl:self.customUrl];
 	[request performWithCompletion:^(BOOL success) {
 		if (success) {

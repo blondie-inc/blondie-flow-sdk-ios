@@ -23,6 +23,8 @@
 		944108912192BB5800EB56E9 /* BlondieLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9441088F2192BB5800EB56E9 /* BlondieLogger.m */; };
 		94BAA39F21919E790080A06E /* Blondie.h in Headers */ = {isa = PBXBuildFile; fileRef = 94BAA39D21919E790080A06E /* Blondie.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94BAA3A62191A0740080A06E /* Blondie.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BAA3A52191A0740080A06E /* Blondie.m */; };
+		94FBF13921A062BF00755122 /* BlondieDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 94FBF13721A062BF00755122 /* BlondieDevice.h */; };
+		94FBF13A21A062BF00755122 /* BlondieDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FBF13821A062BF00755122 /* BlondieDevice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		94BAA39E21919E790080A06E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94BAA3A52191A0740080A06E /* Blondie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Blondie.m; sourceTree = "<group>"; };
 		94CC15C32192FEE700BF8ED6 /* BlondieTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlondieTypes.h; sourceTree = "<group>"; };
+		94FBF13721A062BF00755122 /* BlondieDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlondieDevice.h; sourceTree = "<group>"; };
+		94FBF13821A062BF00755122 /* BlondieDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlondieDevice.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,8 @@
 				94091B8E2191E1E900629D32 /* BlondieStorage.m */,
 				94091B972191F72D00629D32 /* BlondieRequest.h */,
 				94091B982191F72D00629D32 /* BlondieRequest.m */,
+				94FBF13721A062BF00755122 /* BlondieDevice.h */,
+				94FBF13821A062BF00755122 /* BlondieDevice.m */,
 				94091B9F2191FF7400629D32 /* Blondie+Extensions.h */,
 				94091BA02191FF7400629D32 /* Blondie+Extensions.m */,
 				9441088E2192BB5800EB56E9 /* BlondieLogger.h */,
@@ -106,6 +112,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94FBF13921A062BF00755122 /* BlondieDevice.h in Headers */,
 				94091B8F2191E1E900629D32 /* BlondieStorage.h in Headers */,
 				94091B992191F72D00629D32 /* BlondieRequest.h in Headers */,
 				944108902192BB5800EB56E9 /* BlondieLogger.h in Headers */,
@@ -201,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94FBF13A21A062BF00755122 /* BlondieDevice.m in Sources */,
 				94091B882191DB1800629D32 /* BlondieReachability.m in Sources */,
 				94091B9A2191F72D00629D32 /* BlondieRequest.m in Sources */,
 				94091BA22191FF7400629D32 /* Blondie+Extensions.m in Sources */,

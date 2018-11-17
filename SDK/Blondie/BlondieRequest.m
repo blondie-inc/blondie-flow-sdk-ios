@@ -7,6 +7,7 @@
 //
 
 #import "BlondieRequest.h"
+#import "BlondieDevice.h"
 #import "BlondieLogger.h"
 
 @interface BlondieRequest ()
@@ -59,6 +60,14 @@
 	request.HTTPMethod = @"POST";
 	[request addValue:[NSString stringWithFormat:@"Bearer %@", self.token] forHTTPHeaderField:@"Authorization"];
 	
+	NSString *deviceId = [[BlondieDevice sharedInstance] identifier];
+	NSDictionary *bodyDict = @{ @"entity_type": @"Devices", @"entity_id": deviceId };
+	NSData *bodyData = [NSJSONSerialization dataWithJSONObject:bodyDict options:kNilOptions error:nil];
+
+	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	[request setHTTPBody:bodyData];
+	
 	[[BlondieLogger sharedInstance] print:URL.absoluteString];
 	
 	NSURLSession *session = [NSURLSession sharedSession];
@@ -77,5 +86,5 @@
 	
 	[task resume];
 }
-	
+
 @end
