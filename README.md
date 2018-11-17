@@ -43,7 +43,7 @@ Then initialize Blondie SDK by importing Library and adding the following to you
 @import Blondie;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Blondie setApiKey:@"<Your API Key>" forFlowId:@"<Your Flow ID>"];
+    [Blondie setApiKey:@"<Your JWT API Key>"];
 }
 ```
 
@@ -52,7 +52,7 @@ Then initialize Blondie SDK by importing Library and adding the following to you
 import Blondie 
   
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-     Blondie.setApiKey("<Your API Key>", forFlowId: "<Your Flow ID>")
+     Blondie.setApiKey("<Your JWT API Key>")
 }
 ```
 
