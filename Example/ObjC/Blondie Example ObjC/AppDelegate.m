@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
-	[Blondie setApiKey:@"INSERT_API_KEY_HERE" forFlowId:@"INSERT_FLOW_ID_HERE"];
+	[Blondie setApiKey:@"<Your JWT API Key>"];
 	[Blondie enableLogging];
 	[Blondie useDevelopmentEnvironment];
 //	[Blondie disableAutoRetries];

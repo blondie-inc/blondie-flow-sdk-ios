@@ -36,8 +36,8 @@
 	return self;
 }
 	
-+ (void)setApiKey:(NSString *)apiKey forFlowId:(NSString *)flowId {
-	[[Blondie sharedInstance].sync setApiKey:apiKey forFlowId:flowId];
++ (void)setApiKey:(NSString *)apiKey {
+	[[Blondie sharedInstance].sync setupApiKey:apiKey];
 }
 
 + (void)useDevelopmentEnvironment {

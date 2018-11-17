@@ -16,7 +16,7 @@ FOUNDATION_EXPORT const unsigned char BlondieVersionString[];
 
 @interface Blondie : NSObject
 
-+ (void)setApiKey:(NSString *)apiKey forFlowId:(NSString *)flowId;
++ (void)setApiKey:(NSString *)apiKey;
 
 + (void)useDevelopmentEnvironment;
 

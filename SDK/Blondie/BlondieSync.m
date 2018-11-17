@@ -20,7 +20,6 @@ static const NSInteger BlondieSyncAutoRetryLimit = 3;
 @interface BlondieSync ()
 
 @property (strong, readwrite, nonatomic) NSString *apiKey;
-@property (strong, readwrite, nonatomic) NSString *flowId;
 @property (strong, readwrite, nonatomic) NSString *customUrl;
 @property (readwrite, nonatomic) BlondieEnvironmentType environment;
 @property (readwrite, nonatomic) BOOL useAutoRetries;
@@ -86,11 +85,10 @@ static const NSInteger BlondieSyncAutoRetryLimit = 3;
 	}
 }
 
-- (void)setApiKey:(NSString *)apiKey forFlowId:(NSString *)flowId {
+- (void)setupApiKey:(NSString *)apiKey {
 	self.apiKey = apiKey;
-	self.flowId = flowId;
 }
-	
+
 - (void)setupEnvironment:(BlondieEnvironmentType)environment {
 	self.environment = environment;
 }
@@ -124,8 +122,8 @@ static const NSInteger BlondieSyncAutoRetryLimit = 3;
 		return;
 	}
 	
-	if (self.apiKey == nil || self.flowId == nil) {
-		[[BlondieLogger sharedInstance] print:@"Please call setApiKey:forFlowId: method first."];
+	if (self.apiKey == nil) {
+		[[BlondieLogger sharedInstance] print:@"Please call 'setApiKey' method first."];
 		return;
 	}
 	
