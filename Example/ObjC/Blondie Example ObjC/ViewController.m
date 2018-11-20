@@ -7,8 +7,14 @@
 //
 
 #import "ViewController.h"
+#import <Blondie/Blondie.h>
 
 @interface ViewController ()
+{
+	NSInteger eventCounter;
+}
+
+@property (weak, nonatomic) IBOutlet UIButton *triggerEventButton;
 
 @end
 
@@ -16,8 +22,17 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+	eventCounter = 0;
 }
 
+- (IBAction)triggerEventAction:(UIButton *)sender {
+	[Blondie triggerEventWithName:[NSString stringWithFormat:@"Event%ld", eventCounter]
+						 metaData:@{
+									@"param1": @"value1",
+									@"param2": @"value2"
+									}];
+	++eventCounter;
+}
 
 @end

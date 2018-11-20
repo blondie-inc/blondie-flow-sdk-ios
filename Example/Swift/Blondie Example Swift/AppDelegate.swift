@@ -16,7 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		
-		Blondie.setApiKey("", forFlowId: "")
+		Blondie.setApiKey("<Your JWT API Key>")
+		Blondie.enableLogging()
+//		Blondie.disableOfflineMode()
+//		Blondie.disableAutoRetries()
+//		Blondie.setBaseUrl("http://example.com")
 		
 		return true
 	}

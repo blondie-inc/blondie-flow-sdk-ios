@@ -18,7 +18,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
-	[Blondie setApiKey:@"" forFlowId:@""];
+	[Blondie setApiKey:@"<Your JWT API Key>"];
+	[Blondie enableLogging];
+	[Blondie useDevelopmentEnvironment];
+//	[Blondie disableAutoRetries];
+//	[Blondie setBaseUrl:@"http://example.com"];
 	
 	return YES;
 }

@@ -6,11 +6,11 @@
 	<dict>
 		<key>Headers/Blondie.h</key>
 		<data>
-		Hzb8MWYaYrfryrhuP84nyey6fQM=
+		hwFO1C2gLwrOvgaqdrYjtI70wzk=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		BLDZkRlAJA78U0+gACnqYrzSa5s=
+		AmhVzgffHiFTgmYdpw4Z12C22WA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -21,13 +21,21 @@
 	<dict>
 		<key>Headers/Blondie.h</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			hwFO1C2gLwrOvgaqdrYjtI70wzk=
+			</data>
 			<key>hash2</key>
 			<data>
-			dFpmS8TYdpTvCBnvOSVDraVqRPilmmn91y5BfnJtN7I=
+			vCl5Ou0qyODzwSt06GvpKJEkKOA1KwzWCGXVS16/hp0=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			2J2rUo0ZZtMLseH4wlhtKtuMLOs=
+			</data>
 			<key>hash2</key>
 			<data>
 			6D8/hQd4+41uCncFdaUUdIxK+IZNqJjUczLD+rn2ewA=

@@ -14,11 +14,9 @@ FOUNDATION_EXPORT double BlondieVersionNumber;
 //! Project version string for Blondie.
 FOUNDATION_EXPORT const unsigned char BlondieVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <Blondie/PublicHeader.h>
-
 @interface Blondie : NSObject
 
-+ (void)setApiKey:(NSString *)apiKey forFlowId:(NSString *)flowId;
++ (void)setApiKey:(NSString *)apiKey;
 
 + (void)useDevelopmentEnvironment;
 
@@ -29,7 +27,11 @@ FOUNDATION_EXPORT const unsigned char BlondieVersionString[];
 + (void)setBaseUrl:(NSString *)baseUrl;
 
 + (void)disableOfflineMode;
+	
++ (void)disableAutoRetries;
 
-+ (void)triggerEventWithName:(NSString *)name metaData:(NSDictionary *)medaData;
++ (void)triggerEventWithName:(NSString *)name metaData:(NSDictionary *)metaData;
+
++ (void)enableLogging;
 
 @end
