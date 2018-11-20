@@ -10,7 +10,7 @@ Install Blondie to perform automations right from your iOS app. The Blondie SDK 
 
 Before you start, you need to make sure you have an access to the Blondie. Then you have three options:
 
-#### Option 1: CocoaPods
+#### Option 1: CocoaPods (pending)
 
 Add Blondie SDK to your Podfile and run `pod install`
 
@@ -20,7 +20,7 @@ target :YourTargetName do
 end
 ```
 
-#### Option 2. Carthage
+#### Option 2. Carthage (pending)
 
 1. Add `github "blondie-inc/blondie-sdk-ios"` to your Cartfile.
 2. Run `carthage update`.
