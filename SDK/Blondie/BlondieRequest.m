@@ -8,6 +8,7 @@
 
 #import "BlondieRequest.h"
 #import "BlondieDevice.h"
+#import "BlondieEvent.h"
 #import "BlondieLogger.h"
 
 @interface BlondieRequest ()
@@ -55,13 +56,14 @@
 }
 
 - (void)performWithCompletion:(void (^)(BOOL success))completion {
+  BlondieEvent *event = self.event;
 	NSURL *URL = [NSURL URLWithString:(self.customUrl ? self.customUrl : [self baseUrl])];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
 	request.HTTPMethod = @"POST";
 	[request addValue:[NSString stringWithFormat:@"Bearer %@", self.token] forHTTPHeaderField:@"Authorization"];
 	
 	NSString *deviceId = [[BlondieDevice sharedInstance] identifier];
-	NSDictionary *bodyDict = @{ @"entity_type": @"Devices", @"entity_id": deviceId };
+	NSDictionary *bodyDict = @{ @"entityType": @"Devices", @"entityId": deviceId, @"eventName": event.name, @"payload": event.metadata };
 	NSData *bodyData = [NSJSONSerialization dataWithJSONObject:bodyDict options:kNilOptions error:nil];
 
 	[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
